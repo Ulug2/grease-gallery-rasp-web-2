@@ -6,9 +6,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import Link from 'next/link'; // Import Link from next/link
-import { NavItem } from './nav-item';
-
-
 
 export default function Homepage() {
   return (
@@ -23,7 +20,7 @@ export default function Homepage() {
               Upload
             </button>
           </Link>
-          <Link href="/upload">
+          <Link href="/analytics">
             <button className="bg-blue-500 hover:bg-blue-650 text-white py-2 px-4 rounded mt-4 ml-5">
               Analyze
             </button>
