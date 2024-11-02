@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+import CustomDropzone from 'app/(dashboard)/upload/drope-zone'; // Ensure this path is correct
 
 export default function UploadPage() {
   return (
@@ -13,7 +14,9 @@ export default function UploadPage() {
         <CardTitle>Customers</CardTitle>
         <CardDescription>View all customers and their orders.</CardDescription>
       </CardHeader>
-      <CardContent></CardContent>
+      <CardContent>
+        <CustomDropzone />
+      </CardContent>
     </Card>
   );
 }
