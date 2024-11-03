@@ -1,39 +1,31 @@
-import 'server-only';
-
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import {
   pgTable,
   text,
   numeric,
-  integer,
-  timestamp,
-  pgEnum,
-  serial
+  integer
 } from 'drizzle-orm/pg-core';
 import { count, eq, ilike } from 'drizzle-orm';
 import { createInsertSchema } from 'drizzle-zod';
 
 export const db = drizzle(neon(process.env.POSTGRES_URL!));
 
-export const statusEnum = pgEnum('status', ['active', 'inactive', 'archived']);
-
 export const searches = pgTable('searches', {
-  id: numeric('id').primaryKey(),
-  machine_id: serial('machine_id').notNull(),
-  grease_id: serial('grease_id').notNull(),
-  standard_id: numeric('standard_id').notNull(),
-  test_id: numeric('test_id').notNull(),
+  id: integer('id').primaryKey(),
+  machine_id: text('machine_id').notNull(),
+  grease_id: text('grease_id').notNull(),
+  standard_id: integer('standard_id').notNull(),
+  test_id: integer('test_id').notNull(),
   delta_e2000: numeric('delta_e2000').notNull(),
   delta_e76: numeric('delta_e76').notNull()
 });
-
 
 export type SelectSearches = typeof searches.$inferSelect;
 export const insertSearcheSchema = createInsertSchema(searches);
 
 export async function getSearches(
-  search: string,
+  search: number,
   offset: number
 ): Promise<{
   searches: SelectSearches[];
@@ -68,6 +60,46 @@ export async function getSearches(
   };
 }
 
-export async function deleteSearchById(id: number) {
-  await db.delete(searches).where(eq(searches.id, id));
+// export async function deleteSearchById(id: number) {
+//   await db.delete(searches).where(eq(searches.id, id));
+// }
+
+export async function insertSearchById(search: SelectSearches) {
+  await db.insert(searches).values(search);
 }
+
+export const standards = pgTable('standard', {
+  standard_id: integer('standard_id').primaryKey(),
+  rgb_r: integer('rgb_r').notNull(),
+  rgb_g: integer('rgb_g').notNull(),
+  rgb_b: integer('rgb_b').notNull(),
+  cmyk_c: integer('cmyk_c').notNull(),
+  cmyk_m: integer('cmyk_m').notNull(),
+  cmyk_y: integer('cmyk_y').notNull(),
+  cmyk_k: integer('cmyk_k').notNull(),
+  hex: text('hex').notNull(),
+  cielab_l: numeric('cielab_l').notNull(),
+  cielab_a: numeric('cielab_a').notNull(),
+  cielab_b: numeric('cielab_b').notNull(),
+  lchab_l: numeric('lchab_l').notNull(),
+  lchab_c: numeric('lchab_c').notNull(),
+  lchab_h: numeric('lchab_h').notNull()
+});
+
+export const tests = pgTable('tests', {
+  test_id: integer('test_id').primaryKey(),
+  rgb_r: integer('rgb_r').notNull(),
+  rgb_g: integer('rgb_g').notNull(),
+  rgb_b: integer('rgb_b').notNull(),
+  cmyk_c: integer('cmyk_c').notNull(),
+  cmyk_m: integer('cmyk_m').notNull(),
+  cmyk_y: integer('cmyk_y').notNull(),
+  cmyk_k: integer('cmyk_k').notNull(),
+  hex: text('hex').notNull(),
+  cielab_l: numeric('cielab_l').notNull(),
+  cielab_a: numeric('cielab_a').notNull(),
+  cielab_b: numeric('cielab_b').notNull(),
+  lchab_l: numeric('lchab_l').notNull(),
+  lchab_c: numeric('lchab_c').notNull(),
+  lchab_h: numeric('lchab_h').notNull()
+});

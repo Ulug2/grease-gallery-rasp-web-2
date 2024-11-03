@@ -5,18 +5,18 @@ import { sql } from '@vercel/postgres';
 // Called elsewhere to add values to the database
 // Functions for RGB, CMYK, etc. assume the FIRST instance of the name (they search by the heading RGB:, CMYK:, etc.) is the standard, the second is the test (see CMYK functions)
 
-function parseE2000(inputString: string): number | undefined {
-    const regex = /E2000: (\d+)/;
-    const match = inputString.match(regex);
-  
-    if (match) {
-      const numberString = match[1];
-      const number = parseInt(numberString, 10);
-      return number;
-    } else {
-      return undefined;
-    }
+export function parseE2000(inputString: string): number | undefined {
+  const startIndex = inputString.indexOf('E2000: ');
+  if (startIndex !== -1) {
+    const endIndex = inputString.indexOf(' ', startIndex + 7);
+    const numberString = inputString.substring(startIndex + 7, endIndex !== -1 ? endIndex : undefined);
+    const number = parseFloat(numberString);
+    return isNaN(number) ? undefined : number;
   }
+  else {
+    return undefined;
+  }
+}
 
   function parseE76Number(inputString: string): number | undefined {
     const regex = /E76: : (\d+)/;
@@ -131,7 +131,7 @@ function parseE2000(inputString: string): number | undefined {
   //return all E2000 values as an array of numbers
   export async function fetchDeltaE2000Values(): Promise<number[]> {
 
-    const { rows } = await sql`SELECT delta_e2000 FROM searches`;
+    const { rows } = await sql`SELECT * FROM searches`;
 
     //Extract delta_e2000 values from rows and return as an array of numbers
     return rows.map(row => row.delta_e2000);

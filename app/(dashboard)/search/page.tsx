@@ -6,11 +6,11 @@ import { getSearches } from '@/lib/db';
 
 export default async function SearchPage(
   props: {
-    searchParams: Promise<{ q: string; offset: string }>;
+    searchParams: Promise<{ q: number; offset: string }>;
   }
 ) {
   const searchParams = await props.searchParams;
-  const search = searchParams.q ?? '';
+  const search = searchParams.q ?? 0;
   const offset = searchParams.offset ?? 0;
   const { searches, newOffset, totalSearches } = await getSearches(
     search,

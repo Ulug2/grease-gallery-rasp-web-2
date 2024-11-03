@@ -7,4 +7,5 @@ export async function recognizeText(image: ImageLike) {
     const ret = await worker.recognize(image); // test image: 'https://tesseract.projectnaptha.com/img/eng_bw.png'
     console.log(ret.data.text);
     await worker.terminate();
+    return ret.data.text;
   };

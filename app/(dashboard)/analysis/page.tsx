@@ -37,7 +37,8 @@ export default function AnalysisPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const deltaE2000Values = await fetchDeltaE2000Values(); // Fetch the values asynchronously
+      // const deltaE2000Values = await fetchDeltaE2000Values(); // Fetch the values asynchronously
+      const deltaE2000Values = [1, 2, 3, 4, 5, 6, 7]
 
       // Sort the Delta E2000 values
       const sortedValues = deltaE2000Values.sort((a, b) => a - b);

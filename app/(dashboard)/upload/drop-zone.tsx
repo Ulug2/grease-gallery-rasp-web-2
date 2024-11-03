@@ -2,7 +2,8 @@
 
 import React, { useState, DragEvent } from 'react';
 import { recognizeText } from '../../../lib/ocr'; // Import the OCR function
-import { ImageLike } from 'tesseract.js';
+import { parseE2000 } from '../../../lib/parser';
+import { insertSearchById } from '../../../lib/db';
 
 // Define the CustomDropzone component
 const CustomDropzone: React.FC = () => {
@@ -49,10 +50,27 @@ const CustomDropzone: React.FC = () => {
 
         try {
             const image = formData.get('files') as File; // Get the first file from the FormData
-            console.log(image)
             const text = await recognizeText(image); // Call the OCR function
             setExtractedText(text == null ? 'No text found' : text);
             // Handle text and query it into db
+            console.log("text " + text);
+            const id = parseInt(files[0].name.substring(0, 5));
+            const e2000String = parseE2000(text);
+            const e2000 = e2000String !== undefined ? parseFloat(e2000String.toString()) : 0;
+            console.log("e2000 " + e2000);
+            console.log("id " + id);
+            // await insertSearchById(
+            //     {
+            //         id: id,
+            //         machine_id: "armtwo",
+            //         grease_id: "10W40",
+            //         standard_id: 1,
+            //         test_id: 1,
+            //         delta_e2000: "0",
+            //         delta_e76: "0"
+            //     }
+            //   );
+
         } catch (error) {
             console.error('Error extracting text:', error);
         }
