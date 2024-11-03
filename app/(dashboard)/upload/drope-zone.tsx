@@ -92,7 +92,7 @@ const CustomDropzone: React.FC = () => {
                         cursor: 'pointer',
                         backgroundColor: '#EFEFEF', 
                         maxWidth: '110px',
-                        borderRadius: '2px',
+                        borderRadius: '2px'
                     }} // Add some spacing above the button
             />
             <div>
@@ -104,10 +104,10 @@ const CustomDropzone: React.FC = () => {
             </div>
             <button onClick={handleUpload} disabled={uploading} style={{
                     margin: '20px auto', 
-                    border: 'groove black', 
                     maxWidth: '110px', 
-                    backgroundColor: '#009af3',
-                    padding: '3px 6px',
+                    backgroundColor: '#3B82F6',
+                    color: 'white',
+                    padding: '5px 10px',
                     borderRadius: '2px',
                     display: 'flex',
                     justifyContent: 'center'

@@ -24,7 +24,7 @@ export function SearchInput() {
       <Input
         name="q"
         type="search"
-        placeholder="Search..."
+        placeholder="Enter 5-digit ID..."
         className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
       />
       {isPending && <Spinner />}
