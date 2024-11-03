@@ -15,23 +15,23 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { Product } from './product';
+import { Search } from './search';
 import { SelectProduct } from '@/lib/db';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export function ProductsTable({
-  products,
+export function SearchTable({
+  searchs,
   offset,
-  totalProducts
+  totalSearchs
 }: {
-  products: SelectProduct[];
+  searchs: SelectProduct[];
   offset: number;
-  totalProducts: number;
+  totalSearchs: number;
 }) {
   let router = useRouter();
-  let productsPerPage = 5;
+  let searchsPerPage = 5;
 
   function prevPage() {
     router.back();
@@ -44,9 +44,9 @@ export function ProductsTable({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
+        <CardTitle>Search</CardTitle>
         <CardDescription>
-          Manage your products and view their sales performance.
+          Search for your files.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -69,8 +69,8 @@ export function ProductsTable({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products.map((product) => (
-              <Product key={product.id} product={product} />
+            {searchs.map((search) => (
+              <Search key={search.id} search={search} />
             ))}
           </TableBody>
         </Table>
@@ -80,9 +80,9 @@ export function ProductsTable({
           <div className="text-xs text-muted-foreground">
             Showing{' '}
             <strong>
-              {Math.max(0, Math.min(offset - productsPerPage, totalProducts) + 1)}-{offset}
+              {Math.max(0, Math.min(offset - searchsPerPage, totalSearchs) + 1)}-{offset}
             </strong>{' '}
-            of <strong>{totalProducts}</strong> products
+            of <strong>{totalSearchs}</strong> searchs
           </div>
           <div className="flex">
             <Button
@@ -90,7 +90,7 @@ export function ProductsTable({
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset === productsPerPage}
+              disabled={offset === searchsPerPage}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Prev
@@ -100,7 +100,7 @@ export function ProductsTable({
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset + productsPerPage > totalProducts}
+              disabled={offset + searchsPerPage > totalSearchs}
             >
               Next
               <ChevronRight className="ml-2 h-4 w-4" />

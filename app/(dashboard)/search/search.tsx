@@ -10,31 +10,31 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { SelectProduct } from '@/lib/db';
+import { SelectSearches } from '@/lib/db';
 import { deleteProduct } from '../actions';
 
-export function Product({ product }: { product: SelectProduct }) {
+export function Search({ search }: { search: SelectSearches }) {
   return (
     <TableRow>
       <TableCell className="hidden sm:table-cell">
         <Image
-          alt="Product image"
+          alt="Search image"
           className="aspect-square rounded-md object-cover"
           height="64"
-          src={product.imageUrl}
+          src={search.imageUrl}
           width="64"
         />
       </TableCell>
-      <TableCell className="font-medium">{product.name}</TableCell>
+      <TableCell className="font-medium">{search.name}</TableCell>
       <TableCell>
         <Badge variant="outline" className="capitalize">
-          {product.status}
+          {search.status}
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${product.price}`}</TableCell>
-      <TableCell className="hidden md:table-cell">{product.stock}</TableCell>
+      <TableCell className="hidden md:table-cell">{`$${search.price}`}</TableCell>
+      <TableCell className="hidden md:table-cell">{search.stock}</TableCell>
       <TableCell className="hidden md:table-cell">
-        {product.availableAt.toLocaleDateString("en-US")}
+        {search.availableAt.toLocaleDateString("en-US")}
       </TableCell>
       <TableCell>
         <DropdownMenu>

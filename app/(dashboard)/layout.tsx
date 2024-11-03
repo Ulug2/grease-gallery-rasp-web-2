@@ -62,7 +62,7 @@ function DesktopNav() {
           <Home className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="/search" label="Search">
+        <NavItem href="/search" label="search">
           <Search className="h-5 w-5" />
         </NavItem>
 

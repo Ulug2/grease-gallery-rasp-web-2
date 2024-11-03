@@ -18,7 +18,7 @@ export const db = drizzle(neon(process.env.POSTGRES_URL!));
 
 export const statusEnum = pgEnum('status', ['active', 'inactive', 'archived']);
 
-export const products = pgTable('products', {
+export const searchs = pgTable('searchs', {
   id: serial('id').primaryKey(),
   imageUrl: text('image_url').notNull(),
   name: text('name').notNull(),
@@ -28,45 +28,45 @@ export const products = pgTable('products', {
   availableAt: timestamp('available_at').notNull()
 });
 
-export type SelectProduct = typeof products.$inferSelect;
-export const insertProductSchema = createInsertSchema(products);
+export type SelectSearches = typeof searchs.$inferSelect;
+export const insertSearchSchema = createInsertSchema(searchs);
 
-export async function getProducts(
+export async function getSearchs(
   search: string,
   offset: number
 ): Promise<{
-  products: SelectProduct[];
+  searchs: SelectSearches[];
   newOffset: number | null;
-  totalProducts: number;
+  totalSearchs: number;
 }> {
   // Always search the full table, not per page
   if (search) {
     return {
-      products: await db
+      searchs: await db
         .select()
-        .from(products)
-        .where(ilike(products.name, `%${search}%`))
+        .from(searchs)
+        .where(ilike(searchs.name, `%${search}%`))
         .limit(1000),
       newOffset: null,
-      totalProducts: 0
+      totalSearchs: 0
     };
   }
 
   if (offset === null) {
-    return { products: [], newOffset: null, totalProducts: 0 };
+    return { searchs: [], newOffset: null, totalSearchs: 0 };
   }
 
-  let totalProducts = await db.select({ count: count() }).from(products);
-  let moreProducts = await db.select().from(products).limit(5).offset(offset);
-  let newOffset = moreProducts.length >= 5 ? offset + 5 : null;
+  let totalSearchs = await db.select({ count: count() }).from(searchs);
+  let moreSearchs = await db.select().from(searchs).limit(5).offset(offset);
+  let newOffset = moreSearchs.length >= 5 ? offset + 5 : null;
 
   return {
-    products: moreProducts,
+    searchs: moreSearchs,
     newOffset,
-    totalProducts: totalProducts[0].count
+    totalSearchs: totalSearchs[0].count
   };
 }
 
-export async function deleteProductById(id: number) {
-  await db.delete(products).where(eq(products.id, id));
+export async function deleteSearchById(id: number) {
+  await db.delete(searchs).where(eq(searchs.id, id));
 }
