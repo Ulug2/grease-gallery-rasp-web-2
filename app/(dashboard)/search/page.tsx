@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { File, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SearchTable } from './search-table';
-import { getSearchs } from '@/lib/db';
+import { getSearches } from '@/lib/db';
 
 export default async function SearchPage(
   props: {
@@ -12,7 +12,7 @@ export default async function SearchPage(
   const searchParams = await props.searchParams;
   const search = searchParams.q ?? '';
   const offset = searchParams.offset ?? 0;
-  const { searchs, newOffset, totalSearchs } = await getSearchs(
+  const { searches, newOffset, totalSearches } = await getSearches(
     search,
     Number(offset)
   );
@@ -45,9 +45,9 @@ export default async function SearchPage(
       </div>
       <TabsContent value="all">
         <SearchTable
-          searchs={searchs}
+          searches={searches}
           offset={newOffset ?? 0}
-          totalSearchs={totalSearchs}
+          totalSearches={totalSearches}
         />
       </TabsContent>
     </Tabs>

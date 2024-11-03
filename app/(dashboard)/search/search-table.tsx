@@ -22,16 +22,16 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function SearchTable({
-  searchs,
+  searches,
   offset,
-  totalSearchs
+  totalSearches
 }: {
-  searchs: SelectSearches[];
+  searches: SelectSearches[];
   offset: number;
-  totalSearchs: number;
+  totalSearches: number;
 }) {
   let router = useRouter();
-  let searchsPerPage = 5;
+  let searchesPerPage = 5;
 
   function prevPage() {
     router.back();
@@ -69,7 +69,7 @@ export function SearchTable({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {searchs.map((search) => (
+            {searches.map((search) => (
               <Search key={search.id} search={search} />
             ))}
           </TableBody>
@@ -80,9 +80,9 @@ export function SearchTable({
           <div className="text-xs text-muted-foreground">
             Showing{' '}
             <strong>
-              {Math.max(0, Math.min(offset - searchsPerPage, totalSearchs) + 1)}-{offset}
+              {Math.max(0, Math.min(offset - searchesPerPage, totalSearches) + 1)}-{offset}
             </strong>{' '}
-            of <strong>{totalSearchs}</strong> searchs
+            of <strong>{totalSearches}</strong> searches
           </div>
           <div className="flex">
             <Button
@@ -90,7 +90,7 @@ export function SearchTable({
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset === searchsPerPage}
+              disabled={offset === searchesPerPage}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Prev
@@ -100,7 +100,7 @@ export function SearchTable({
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset + searchsPerPage > totalSearchs}
+              disabled={offset + searchesPerPage > totalSearches}
             >
               Next
               <ChevronRight className="ml-2 h-4 w-4" />
