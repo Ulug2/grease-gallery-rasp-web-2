@@ -6,6 +6,7 @@ import React, { useState, DragEvent } from 'react';
 const CustomDropzone: React.FC = () => {
     // State to hold the list of files dropped into the dropzone
     const [files, setFiles] = useState<File[]>([]);
+    const [uploading, setUploading] = useState(false); // State to track upload status
 
     // Handler for when files are dropped
     const handleDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -29,6 +30,40 @@ const CustomDropzone: React.FC = () => {
         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     };
 
+    // Handler for file upload
+    const handleUpload = async () => {
+        if (files.length === 0) {
+            alert("Please select files to upload.");
+            return;
+        }
+
+        const formData = new FormData(); // Create a FormData object to hold the files
+        files.forEach(file => {
+            formData.append('files', file); // Append each file to the FormData
+        });
+
+        setUploading(true); // Set uploading state to true
+
+        try {
+            const response = await fetch('/api/upload', { // Adjust the URL to your backend endpoint
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Upload failed');
+            }
+
+            alert('Files uploaded successfully!'); // Notify user on success
+            setFiles([]); // Clear selected files after upload
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while uploading files.');
+        } finally {
+            setUploading(false); // Reset uploading state
+        }
+    };
+
     // Render the dropzone UI
     return (
         <div
@@ -39,10 +74,11 @@ const CustomDropzone: React.FC = () => {
                 borderRadius: '4px', // Rounded corners for the dropzone
                 padding: '20px', // Inner padding
                 textAlign: 'center', // Center the text
-                cursor: 'pointer', // Change cursor to pointer when hovering
-                display: 'flex', // Use flexbox for layout
-                flexDirection: 'column', // Stack elements vertically
-                alignItems: 'center', // Center children horizontally
+                height: '300px',
+                width: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
             }}
         >
             <p>Drag and drop your files here</p> {/* Instruction text */}
@@ -50,7 +86,13 @@ const CustomDropzone: React.FC = () => {
                 type="file" 
                 multiple // Allows multiple files to be selected
                 onChange={handleFileSelect} // Attach the file selection handler
-                style={{ marginTop: '10px', marginLeft: '120px' }} // Add some spacing above the button
+                style={{ margin: '10px auto',
+                        cursor: 'pointer',
+                        backgroundColor: '#EFEFEF', 
+                        maxWidth: '110px',
+                        border: 'solid black',
+                        borderRadius: '5px'
+                    }} // Add some spacing above the button
             />
             <div>
                 {/* Map through the files array and display the name of each file */}
@@ -58,6 +100,17 @@ const CustomDropzone: React.FC = () => {
                     <div key={index}>{file.name}</div> // Display file name
                 ))}
             </div>
+            <button onClick={handleUpload} disabled={uploading} style={{
+                    margin: '10px auto', 
+                    border: 'solid black', 
+                    maxWidth: '110px', 
+                    backgroundColor: 'coral',
+                    padding: '3px 6px',
+                    borderRadius: '5px',
+
+                 }}>
+                {uploading ? 'Uploading...' : 'Upload Files'} {/* Button text based on uploading state */}
+            </button>
         </div>
     );
 };
