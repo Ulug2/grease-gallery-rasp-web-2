@@ -59,17 +59,17 @@ const CustomDropzone: React.FC = () => {
             const e2000 = e2000String !== undefined ? parseFloat(e2000String.toString()) : 0;
             console.log("e2000 " + e2000);
             console.log("id " + id);
-            const value = await insertSearchById(
-                {
-                    id: id,
-                    machine_id: "armtwo",
-                    grease_id: "10W40",
-                    standard_id: 1,
-                    test_id: 1,
-                    delta_e2000: "0",
-                    delta_e76: "0"
-                }
-            );
+            // const value = await insertSearchById(
+            //     {
+            //         id: id,
+            //         machine_id: "armtwo",
+            //         grease_id: "10W40",
+            //         standard_id: 1,
+            //         test_id: 1,
+            //         delta_e2000: "0",
+            //         delta_e76: "0"
+            //     }
+            // );
 
         } catch (error) {
             console.error('Error extracting text:', error);
