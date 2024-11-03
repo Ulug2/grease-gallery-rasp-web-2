@@ -74,45 +74,45 @@ export default function AnalysisPage() {
 
   return (
     <div className="flex justify-center items-center min-h-2xl bg-gray-100">
-    <Card className="max-h-6xl">
-      <CardHeader>
-        <CardTitle className="text-3xl font-bold flex justify-center">Analysis</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Bar
-          data={chartData}
-          options={{
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'top',
-              },
+  <Card className="max-w-3xl w-full shadow-lg rounded-lg p-6 bg-white">
+    <CardHeader>
+      <CardTitle className="text-3xl font-bold flex justify-center">Analysis</CardTitle>
+    </CardHeader>
+    <CardContent className=" font-bold flex justify-center">
+      <Bar
+        data={chartData}
+        options={{
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Delta E2000 Contrast Analysis',
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
               title: {
                 display: true,
-                text: 'Delta E2000 Contrast Analysis',
+                text: 'Number of Samples',
               },
             },
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Number of Samples',
-                },
-              },
-              x: {
-                title: {
-                  display: true,
-                  text: 'Contrast Level',
-                },
+            x: {
+              title: {
+                display: true,
+                text: 'Contrast Level',
               },
             },
-          }}
-          height={250}
-          width={300}
-        />
-      </CardContent>
-    </Card>
-    </div>
+          },
+        }}
+        height={250}
+        width={300}
+      />
+    </CardContent>
+  </Card>
+</div>
   );
 }
