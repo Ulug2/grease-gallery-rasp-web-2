@@ -42,6 +42,11 @@ CREATE TABLE searches (
 );
 ```
 
+You can add temporary test data as well.
+```
+INSERT INTO searches (id, machine_id, grease_id, standard_id, test_id, delta_e2000, delta_e76) VALUES (12345, 'robot_arm', '10W30', 1, 1, 27.7, 30.3);
+```
+
 Then, uncomment `app/api/seed.ts` and hit `http://localhost:3000/api/seed` to seed the database with products.
 
 Next, copy the `.env.example` file to `.env` and update the values. Follow the instructions in the `.env.example` file to set up your GitHub OAuth application.
