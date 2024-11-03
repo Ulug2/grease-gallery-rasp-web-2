@@ -1,7 +1,11 @@
 
+import { sql } from '@vercel/postgres'
+
 // Functions for turning the string created by OCR into useful data
 // Called elsewhere to add values to the database
 // Functions for RGB, CMYK, etc. assume the FIRST instance of the name (they search by the heading RGB:, CMYK:, etc.) is the standard, the second is the test (see CMYK functions)
+
+
 
 function parseE2000(inputString: string): number | undefined {
     const regex = /E2000: (\d+)/;
@@ -124,4 +128,14 @@ function parseE2000(inputString: string): number | undefined {
     } else {
       return undefined;
     }
+  }
+
+  //return all E2000 values as an array of numbers
+  async function fetchDeltaE2000Values(): Promise<number[]> {
+
+    const { rows } = await sql`SELECT delta_e2000 FROM searches;`;
+    
+    // Extract delta_e2000 values from rows and return as an array of numbers
+    return rows.map(row => row.delta_e2000);
+
   }
