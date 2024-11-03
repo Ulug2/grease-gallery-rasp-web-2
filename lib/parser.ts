@@ -129,11 +129,26 @@ function parseE2000(inputString: string): number | undefined {
   }
 
   //return all E2000 values as an array of numbers
-  async function fetchDeltaE2000Values(): Promise<number[]> {
+  export async function fetchDeltaE2000Values(): Promise<number[]> {
 
     const { rows } = await sql`SELECT delta_e2000 FROM searches`;
 
     //Extract delta_e2000 values from rows and return as an array of numbers
     return rows.map(row => row.delta_e2000);
 
+  }
+
+  //Finds the largest E2000 value
+  //Returns the value, as well as the ID in the format {E2000, ID}
+  export async function findLargestDeltaE2000(): Promise<{ delta_e2000: number, id: number }> {
+    const { rows } = await sql`
+      SELECT delta_e2000, id
+      FROM searches
+      ORDER BY delta_e2000 DESC
+      LIMIT 1;
+    `;
+    // Explicitly type the rows array
+    const [row] = rows as [{ delta_e2000: number, id: number }];
+
+    return row;
   }
