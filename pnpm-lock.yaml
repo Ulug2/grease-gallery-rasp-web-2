@@ -2,7 +2,7 @@ lockfileVersion: '9.0'
 
 settings:
   autoInstallPeers: true
-  excludeLinksFromLockfile: true
+  excludeLinksFromLockfile: false
 
 overrides:
   '@types/react': npm:types-react@19.0.0-rc.1
