@@ -152,3 +152,19 @@ function parseE2000(inputString: string): number | undefined {
 
     return row;
   }
+
+  //Finds the smallest E2000 value
+  //Returns the value, as well as the ID in the format {E2000, ID}
+  export async function findSmallestDeltaE2000(): Promise<{ delta_e2000: number, id: number }> {
+    const { rows } = await sql`
+      SELECT delta_e2000, id
+      FROM searches
+      ORDER BY delta_e2000 ASC
+      LIMIT 1;
+    `;
+    // Explicitly type the rows array
+    const [row] = rows as [{ delta_e2000: number, id: number }];
+
+    return row;
+  }
+
