@@ -19,14 +19,15 @@ export const db = drizzle(neon(process.env.POSTGRES_URL!));
 export const statusEnum = pgEnum('status', ['active', 'inactive', 'archived']);
 
 export const searches = pgTable('searches', {
-  id: serial('id').primaryKey(),
-  imageUrl: text('image_url').notNull(),
-  name: text('name').notNull(),
-  status: statusEnum('status').notNull(),
-  price: numeric('price', { precision: 10, scale: 2 }).notNull(),
-  stock: integer('stock').notNull(),
-  availableAt: timestamp('available_at').notNull()
+  id: numeric('id').primaryKey(),
+  machine_id: serial('machine_id').notNull(),
+  grease_id: serial('grease_id').notNull(),
+  standard_id: numeric('standard_id').notNull(),
+  test_id: numeric('test_id').notNull(),
+  delta_e2000: numeric('delta_e2000').notNull(),
+  delta_e76: numeric('delta_e76').notNull()
 });
+
 
 export type SelectSearches = typeof searches.$inferSelect;
 export const insertSearcheSchema = createInsertSchema(searches);
@@ -45,7 +46,7 @@ export async function getSearches(
       searches: await db
         .select()
         .from(searches)
-        .where(ilike(searches.name, `%${search}%`))
+        .where(ilike(searches.id, `%${search}%`))
         .limit(1000),
       newOffset: null,
       totalSearches: 0
