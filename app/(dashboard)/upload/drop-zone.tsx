@@ -85,7 +85,7 @@ const CustomDropzone: React.FC = () => {
         >
             <div
             style={{
-                border: '2px dashed #0070f3', // Style for the dropzone border
+                border: '2px dashed #0F172A', // Style for the dropzone border
                 borderRadius: '4px', // Rounded corners for the dropzone
                 padding: '20px', // Inner padding
                 textAlign: 'center', // Center the text
@@ -118,7 +118,7 @@ const CustomDropzone: React.FC = () => {
             <button onClick={handleUpload} disabled={uploaded} style={{
                     margin: '20px auto', 
                     maxWidth: '110px', 
-                    backgroundColor: '#3B82F6',
+                    backgroundColor: '#0F172A',
                     color: 'white',
                     padding: '5px 10px',
                     borderRadius: '2px',
