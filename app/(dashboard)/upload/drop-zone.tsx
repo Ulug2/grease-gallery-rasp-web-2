@@ -53,7 +53,6 @@ const CustomDropzone: React.FC = () => {
             const text = await recognizeText(image); // Call the OCR function
             setExtractedText(text == null ? 'No text found' : text);
             // Handle text and query it into db
-            console.log("text " + text);
             const id = parseInt(files[0].name.substring(0, 5));
             const e2000String = parseE2000(text);
             const e2000 = e2000String !== undefined ? parseFloat(e2000String.toString()) : 0;
