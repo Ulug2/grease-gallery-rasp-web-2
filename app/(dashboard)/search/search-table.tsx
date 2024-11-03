@@ -79,7 +79,7 @@ export function SearchTable({
     <Card>
       <CardHeader className="flex justify-between items-center w-full">
         <CardTitle>Search</CardTitle>
-        <CardDescription>Search for your files.</CardDescription>
+        <CardDescription>Search grease values.</CardDescription>
         <div className="flex w-full max-w-sm items-center space-x-2">
           <Input type="text" placeholder="Search..." />
           <Button type="submit">Search</Button>
