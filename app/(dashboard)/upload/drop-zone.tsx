@@ -1,12 +1,15 @@
 "use client"; // This directive indicates that the component is a client component
 
 import React, { useState, DragEvent } from 'react';
+import { recognizeText } from '../../../lib/ocr'; // Import the OCR function
+import { ImageLike } from 'tesseract.js';
 
 // Define the CustomDropzone component
 const CustomDropzone: React.FC = () => {
     // State to hold the list of files dropped into the dropzone
     const [files, setFiles] = useState<File[]>([]);
     const [uploading, setUploading] = useState(false); // State to track upload status
+    const [extractedText, setExtractedText] = useState('');
 
     // Handler for when files are dropped
     const handleDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -29,7 +32,7 @@ const CustomDropzone: React.FC = () => {
         // Update the state with the new files
         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
     };
-
+    
     // Handler for file upload
     const handleUpload = async () => {
         if (files.length === 0) {
@@ -43,6 +46,16 @@ const CustomDropzone: React.FC = () => {
         });
 
         setUploading(true); // Set uploading state to true
+
+        try {
+            const image = formData.get('files') as File; // Get the first file from the FormData
+            console.log(image)
+            const text = await recognizeText(image); // Call the OCR function
+            setExtractedText(text == null ? 'No text found' : text);
+            // Handle text and query it into db
+        } catch (error) {
+            console.error('Error extracting text:', error);
+        }
 
         try {
             const response = await fetch('/api/upload', { // Adjust the URL to your backend endpoint

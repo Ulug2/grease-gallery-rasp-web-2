@@ -7,24 +7,11 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import CustomDropzone from 'app/(dashboard)/upload/drope-zone'; // Ensure this path is correct
-import { recognizeText } from '../../../lib/ocr'; // Import the OCR function
+import CustomDropzone from 'app/(dashboard)/upload/drop-zone'; // Ensure this path is correct
 import React, { useState } from 'react';
 
 //verify
 const UploadPage = () => {
-  const [extractedText, setExtractedText] = useState('');
-
-  const handleImageUpload = async (file) => {
-    try {
-      const text = await recognizeText(file);
-      setExtractedText(text);
-    } catch (error) {
-      console.error('Error extracting text:', error);
-      // Handle error, e.g., display an error message
-    }
-  };
-
   return (
     <Card>
       <CardHeader style={{ textAlign: 'center' }}>
@@ -32,8 +19,7 @@ const UploadPage = () => {
         <CardDescription>Upload your images</CardDescription>
       </CardHeader>
       <CardContent style={{ display: 'flex', flexDirection: 'column', justifyContent: 'end' }}>
-        <CustomDropzone onImageUpload={handleImageUpload} />
-        <textarea value={extractedText} readOnly />
+        <CustomDropzone/>
       </CardContent>
     </Card>
   );

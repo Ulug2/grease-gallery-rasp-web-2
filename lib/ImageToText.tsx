@@ -19,7 +19,7 @@ const ImageToText = () => {
     reader.onload = async (e) => {
       try {
         const result = await recognizeText(e.target?.result as string);
-        setText(result);
+        setText(result == null ? 'No text found' : result);
         setError(null);
       } catch (err) {
         console.error('Error processing image:', err); // Log the error for debugging
