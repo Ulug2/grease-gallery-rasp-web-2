@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ProductsTable } from '../products-table';
 import { getProducts } from '@/lib/db';
 
-export default async function ProductsPage(
+export default async function SearchPage(
   props: {
     searchParams: Promise<{ q: string; offset: string }>;
   }

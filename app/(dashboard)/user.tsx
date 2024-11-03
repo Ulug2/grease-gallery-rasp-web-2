@@ -21,16 +21,18 @@ export async function User() {
         <Button
           variant="outline"
           size="icon"
-          className="overflow-hidden rounded-full"
+          className="overflow-hidden rounded-full ml-auto"
         >
           <Image
             src={user?.image ?? '/placeholder-user.jpg'}
             width={36}
             height={36}
             alt="Avatar"
-            className="overflow-hidden rounded-full"
+            className="overflow-hidden rounded-full ml-auto"
+
           />
         </Button>
+        
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
