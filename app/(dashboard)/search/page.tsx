@@ -1,7 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { File, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { SearchTable } from './search-table';
+import { SearchTable} from './search-table';
 import { getSearches } from '@/lib/db';
 
 export default async function SearchPage(

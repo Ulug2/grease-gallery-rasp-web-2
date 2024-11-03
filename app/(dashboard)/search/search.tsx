@@ -16,26 +16,13 @@ import { deleteProduct } from '../actions';
 export function Search({ search }: { search: SelectSearches }) {
   return (
     <TableRow>
-      <TableCell className="hidden sm:table-cell">
-        <Image
-          alt="Search image"
-          className="aspect-square rounded-md object-cover"
-          height="64"
-          src={search.imageUrl}
-          width="64"
-        />
-      </TableCell>
-      <TableCell className="font-medium">{search.name}</TableCell>
       <TableCell>
         <Badge variant="outline" className="capitalize">
-          {search.status}
+          {search.machine_id}
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${search.price}`}</TableCell>
-      <TableCell className="hidden md:table-cell">{search.stock}</TableCell>
-      <TableCell className="hidden md:table-cell">
-        {search.availableAt.toLocaleDateString("en-US")}
-      </TableCell>
+      <TableCell className="hidden md:table-cell">{`$${search.grease_id}`}</TableCell>
+      <TableCell className="hidden md:table-cell">{search.standard_id}</TableCell>
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
