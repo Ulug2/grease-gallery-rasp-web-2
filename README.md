@@ -32,9 +32,9 @@ Inside the Vercel Postgres dashboard, create a table based on the schema defined
 
 ```
 CREATE TABLE searches (
-  id SERIAL PRIMARY KEY,
-  machine_id SERIAL NOT NULL,
-  grease_id SERIAL NOT NULL,
+  id INTEGER PRIMARY KEY,
+  machine_id TEXT NOT NULL,
+  grease_id TEXT NOT NULL,
   standard_id INTEGER NOT NULL,
   test_id INTEGER NOT NULL,
   delta_e2000 NUMERIC(10, 1) NOT NULL,
