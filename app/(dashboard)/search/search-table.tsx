@@ -16,7 +16,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { Search } from './search';
-import { SelectProduct } from '@/lib/db';
+import { SelectSearches } from '@/lib/db';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -26,7 +26,7 @@ export function SearchTable({
   offset,
   totalSearchs
 }: {
-  searchs: SelectProduct[];
+  searchs: SelectSearches[];
   offset: number;
   totalSearchs: number;
 }) {
