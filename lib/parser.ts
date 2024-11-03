@@ -18,6 +18,19 @@ export function parseE2000(inputString: string): number | undefined {
   }
 }
 
+export function parseE76(inputString: string): number | undefined {
+  const startIndex = inputString.indexOf('E76: ');
+  if (startIndex !== -1) {
+    const endIndex = inputString.indexOf(' ', startIndex + 5);
+    const numberString = inputString.substring(startIndex + 5, endIndex !== -1 ? endIndex : undefined);
+    const number = parseFloat(numberString);
+    return isNaN(number) ? undefined : number;
+  }
+  else {
+    return undefined;
+  }
+}
+
   function parseE76Number(inputString: string): number | undefined {
     const regex = /E76: : (\d+)/;
     const match = inputString.match(regex);

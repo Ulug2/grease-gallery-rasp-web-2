@@ -2,7 +2,7 @@
 
 import React, { useState, DragEvent } from 'react';
 import { recognizeText } from '../../../lib/ocr'; // Import the OCR function
-import { parseE2000 } from '../../../lib/parser';
+import { parseE2000, parseE76 } from '../../../lib/parser';
 import { insertSearchById } from '../../../lib/db';
 
 // Define the CustomDropzone component
@@ -56,8 +56,11 @@ const CustomDropzone: React.FC = () => {
             const id = parseInt(files[0].name.substring(0, 5));
             const e2000String = parseE2000(text);
             const e2000 = e2000String !== undefined ? parseFloat(e2000String.toString()) : 0;
-            console.log("e2000 " + e2000);
-            console.log("id " + id);
+            const e76String = parseE76(text);
+            const e76 = e76String !== undefined ? parseFloat(e76String.toString()) : 0;
+            console.log("E2000: " + e2000);
+            console.log("E76: " + e76);
+            console.log("ID: " + id);
             // const value = await insertSearchById(
             //     {
             //         id: id,
