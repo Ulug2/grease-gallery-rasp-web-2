@@ -1,6 +1,6 @@
 import { createWorker } from 'tesseract.js';
 
-export async function getText() {
+export async function recognizeText(image) {
     const worker = await createWorker('eng', 1, {
       logger: (m) => console.log(m),
     });
