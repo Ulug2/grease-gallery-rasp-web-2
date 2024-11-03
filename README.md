@@ -37,8 +37,8 @@ CREATE TABLE searches (
   grease_id SERIAL NOT NULL,
   standard_id INTEGER NOT NULL,
   test_id INTEGER NOT NULL,
-  delta_E2000 NUMERIC(10, 1) NOT NULL,
-  delta_E76 NUMERIC(10, 1) NOT NULL
+  delta_e2000 NUMERIC(10, 1) NOT NULL,
+  delta_e76 NUMERIC(10, 1) NOT NULL
 );
 ```
 
