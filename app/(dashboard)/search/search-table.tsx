@@ -36,6 +36,12 @@ export function SearchTable({
   const router = useRouter();
   const searchesPerPage = 5;
 
+  const handleAnalyze = () => {
+    // Navigate to the analysis page, including selected row IDs as a query parameter
+    const selectedQuery = selectedRows.join(",");
+    router.push(`/analysis?ids=${selectedQuery}`);
+  };
+
   useEffect(() => {
     const validSelectedRows = selectedRows.filter((id) =>
       searches.some((search) => search.id === id)
@@ -149,7 +155,7 @@ export function SearchTable({
         </Table>
         <div className="flex justify-between items-center mt-4">
           <span>{selectedRows.length} files selected</span>
-          <Button type="submit" className="ml-auto">
+          <Button onClick={handleAnalyze} className="ml-auto">
             Analyze Selected
           </Button>
         </div>
