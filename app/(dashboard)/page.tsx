@@ -13,7 +13,7 @@ import { SearchInput } from './search';
 
 export default function Homepage() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+    <div className="flex justify-center items-center min-h-2xl bg-gray-100 p-4">
       <Card className="max-w-2xl w-full shadow-lg rounded-lg p-6 bg-white">
         <CardHeader className="text-center mb-6">
           <CardTitle className="text-3xl font-bold text-gray-800">Grease Gallery</CardTitle>
