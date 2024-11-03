@@ -69,6 +69,8 @@ const CustomDropzone: React.FC = () => {
         <div
             onDrop={handleDrop} // Attach the drop event handler
             onDragOver={handleDragOver} // Attach the drag over event handler
+        >
+            <div
             style={{
                 border: '2px dashed #0070f3', // Style for the dropzone border
                 borderRadius: '4px', // Rounded corners for the dropzone
@@ -80,7 +82,7 @@ const CustomDropzone: React.FC = () => {
                 flexDirection: 'column',
                 justifyContent: 'center'
             }}
-        >
+            >
             <p>Drag and drop your files here</p> {/* Instruction text */}
             <input 
                 type="file" 
@@ -90,8 +92,7 @@ const CustomDropzone: React.FC = () => {
                         cursor: 'pointer',
                         backgroundColor: '#EFEFEF', 
                         maxWidth: '110px',
-                        border: 'solid black',
-                        borderRadius: '5px'
+                        borderRadius: '2px',
                     }} // Add some spacing above the button
             />
             <div>
@@ -100,14 +101,16 @@ const CustomDropzone: React.FC = () => {
                     <div key={index}>{file.name}</div> // Display file name
                 ))}
             </div>
+            </div>
             <button onClick={handleUpload} disabled={uploading} style={{
-                    margin: '10px auto', 
-                    border: 'solid black', 
+                    margin: '20px auto', 
+                    border: 'groove black', 
                     maxWidth: '110px', 
-                    backgroundColor: 'coral',
+                    backgroundColor: '#009af3',
                     padding: '3px 6px',
-                    borderRadius: '5px',
-
+                    borderRadius: '2px',
+                    display: 'flex',
+                    justifyContent: 'center'
                  }}>
                 {uploading ? 'Uploading...' : 'Upload Files'} {/* Button text based on uploading state */}
             </button>
