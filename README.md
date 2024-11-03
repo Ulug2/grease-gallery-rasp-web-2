@@ -31,16 +31,14 @@ During the deployment, Vercel will prompt you to create a new Postgres database.
 Inside the Vercel Postgres dashboard, create a table based on the schema defined in this repository.
 
 ```
-CREATE TYPE status AS ENUM ('active', 'inactive', 'archived');
-
-CREATE TABLE products (
+CREATE TABLE searches (
   id SERIAL PRIMARY KEY,
-  image_url TEXT NOT NULL,
-  name TEXT NOT NULL,
-  status status NOT NULL,
-  price NUMERIC(10, 2) NOT NULL,
-  stock INTEGER NOT NULL,
-  available_at TIMESTAMP NOT NULL
+  machine_id SERIAL NOT NULL,
+  grease_id SERIAL NOT NULL,
+  standard_id INTEGER NOT NULL,
+  test_id INTEGER NOT NULL,
+  delta_E2000 NUMERIC(10, 1) NOT NULL,
+  delta_E76 NUMERIC(10, 1) NOT NULL
 );
 ```
 
