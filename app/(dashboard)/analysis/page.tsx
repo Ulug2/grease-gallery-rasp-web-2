@@ -73,7 +73,8 @@ export default function AnalysisPage() {
   }, []);
 
   return (
-    <Card>
+    <div className="flex justify-center items-center min-h-2xl bg-gray-100">
+    <Card className="max-h-6xl">
       <CardHeader>
         <CardTitle className="text-3xl font-bold flex justify-center">Analysis</CardTitle>
       </CardHeader>
@@ -112,5 +113,6 @@ export default function AnalysisPage() {
         />
       </CardContent>
     </Card>
+    </div>
   );
 }
