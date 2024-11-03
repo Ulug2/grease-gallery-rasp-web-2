@@ -5,15 +5,17 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { SearchInput } from '../search';
 
-export default function AnalyticsPage() {
+
+export default function AnalysisPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className='text-3xl font-bold flex justify-center'>Analytics</CardTitle>
+        <CardTitle className='text-3xl font-bold flex justify-center'>Analysis</CardTitle>
       </CardHeader>
       <CardContent></CardContent>
     </Card>
   );
+
+  
 }
