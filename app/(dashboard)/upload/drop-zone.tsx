@@ -8,7 +8,7 @@ import { ImageLike } from 'tesseract.js';
 const CustomDropzone: React.FC = () => {
     // State to hold the list of files dropped into the dropzone
     const [files, setFiles] = useState<File[]>([]);
-    const [uploading, setUploading] = useState(false); // State to track upload status
+    const [uploaded, setUploaded] = useState(false); // State to track upload status
     const [extractedText, setExtractedText] = useState('');
 
     // Handler for when files are dropped
@@ -45,7 +45,7 @@ const CustomDropzone: React.FC = () => {
             formData.append('files', file); // Append each file to the FormData
         });
 
-        setUploading(true); // Set uploading state to true
+        setUploaded(true); // Set uploading state to true
 
         try {
             const image = formData.get('files') as File; // Get the first file from the FormData
@@ -57,24 +57,24 @@ const CustomDropzone: React.FC = () => {
             console.error('Error extracting text:', error);
         }
 
-        try {
-            const response = await fetch('/api/upload', { // Adjust the URL to your backend endpoint
-                method: 'POST',
-                body: formData,
-            });
+        // try {
+        //     const response = await fetch('/api/upload', { // Adjust the URL to your backend endpoint
+        //         method: 'POST',
+        //         body: formData,
+        //     });
 
-            if (!response.ok) {
-                throw new Error('Upload failed');
-            }
+        //     if (!response.ok) {
+        //         throw new Error('Upload failed');
+        //     }
 
-            alert('Files uploaded successfully!'); // Notify user on success
-            setFiles([]); // Clear selected files after upload
-        } catch (error) {
-            console.error(error);
-            alert('An error occurred while uploading files.');
-        } finally {
-            setUploading(false); // Reset uploading state
-        }
+        //     alert('Files uploaded successfully!'); // Notify user on success
+        //     setFiles([]); // Clear selected files after upload
+        // } catch (error) {
+        //     console.error(error);
+        //     alert('An error occurred while uploading files.');
+        // } finally {
+        //     setUploading(false); // Reset uploading state
+        // }
     };
 
     // Render the dropzone UI
@@ -115,7 +115,7 @@ const CustomDropzone: React.FC = () => {
                 ))}
             </div>
             </div>
-            <button onClick={handleUpload} disabled={uploading} style={{
+            <button onClick={handleUpload} disabled={uploaded} style={{
                     margin: '20px auto', 
                     maxWidth: '110px', 
                     backgroundColor: '#3B82F6',
@@ -125,7 +125,7 @@ const CustomDropzone: React.FC = () => {
                     display: 'flex',
                     justifyContent: 'center'
                  }}>
-                {uploading ? 'Uploading...' : 'Upload Files'} {/* Button text based on uploading state */}
+                {uploaded ? 'Uploaded' : 'Upload Files'} {/* Button text based on uploading state */}
             </button>
         </div>
     );
