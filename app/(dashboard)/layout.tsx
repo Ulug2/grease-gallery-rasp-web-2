@@ -59,19 +59,19 @@ function DesktopNav() {
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
 
         <NavItem href="/" label="Home">
-          <Home className="h-5 w-5" />
+          <Home className="h-5 w-5 transform transition-transform duration-200 hover:scale-105 hover:shadow-lg" />
         </NavItem>
 
         <NavItem href="/search" label="search">
-          <Search className="h-5 w-5" />
+          <Search className="h-5 w-5 transform transition-transform duration-200 hover:scale-105 hover:shadow-lg" />
         </NavItem>
 
         <NavItem href="/upload" label="Upload">
-          <Upload className="h-5 w-5" />
+          <Upload className="h-5 w-5 transform transition-transform duration-200 hover:scale-105 hover:shadow-lg" />
         </NavItem>
 
         <NavItem href="/analysis" label="Analysis">
-          <LineChart className="h-5 w-5" />
+          <LineChart className="h-5 w-5 transform transition-transform duration-200 hover:scale-105 hover:shadow-lg" />
         </NavItem>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -130,10 +130,10 @@ function MobileNav() {
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <LineChart className="h-5 w-5" />
-            Analytics
+            Analysis
           </Link>
           <Link
-            href="/analytics"
+            href="/analysis"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <Settings className="h-5 w-5" />
@@ -152,12 +152,6 @@ function DashboardBreadcrumb() {
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
             <Link href="#">Grease Gallery</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="#">Home</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>

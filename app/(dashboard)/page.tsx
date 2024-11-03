@@ -19,16 +19,16 @@ export default function Homepage() {
       </CardHeader>
       <CardContent>
         <div className='flex justify-center space-x-4'>
-          <Link href="/upload">
-            <button className="bg-blue-500 hover:bg-blue-650 text-white py-2 px-4 rounded mt-4">
-              Upload
-            </button>
-          </Link>
-          <Link href="/analytics">
-            <button className="bg-blue-500 hover:bg-blue-650 text-white py-2 px-4 rounded mt-4 ml-5">
-              Analyze
-            </button>
-          </Link>
+        <Link href="/upload">
+          <button className="bg-blue-500 text-white py-2 px-4 rounded-full mt-4 flex items-center group transition-transform duration-200 hover:scale-105">
+          Upload <span className="ml-2 transform transition-transform duration-200 group-hover:translate-x-1">📤</span>
+          </button>
+        </Link>
+        <Link href="/analysis">
+          <button className="bg-blue-500 text-white py-2 px-4 rounded-full mt-4 ml-5 flex items-center group transition-transform duration-200 hover:scale-105">
+            Analyze <span className="ml-2 transform transition-transform duration-200 group-hover:translate-x-1">📊</span>
+          </button>
+        </Link>
         </div>
       </CardContent>
     </Card>
